@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Workflow Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: white;
+            color: black;
+            padding: 2px 6px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Git & GitHub Workflow Guide</h1>
+        <p>This guide provides a step-by-step reference for setting up Git, working with SSH keys, initializing repositories, and using GitHub effectively.</p>
+
+        <h2>1. Set up Git Configuration</h2>
+        <pre>git config --global user.name "YourName"
+git config --global user.email "your-email@example.com"
+git config --list</pre>
+        <p>This sets your username and email globally for all Git projects.</p>
+
+        <h2>2. Create SSH Key</h2>
+        <pre>ssh-keygen -t rsa -b 4096</pre>
+        <p>Follow the prompts and press <code>Enter</code> to accept the default location for the SSH key.</p>
+        <p>Add the SSH key to your SSH agent:</p>
+        <pre>eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa</pre>
+
+        <h2>3. Add SSH Key to GitHub</h2>
+        <p>Copy the public key to your clipboard:</p>
+        <pre>pbcopy < ~/.ssh/id_rsa.pub</pre>
+        <p>Go to <a href="https://github.com/settings/keys" target="_blank">GitHub SSH and GPG Keys</a>, click <strong>New SSH Key</strong>, paste your key, and click <strong>Add SSH Key</strong>.</p>
+
+        <h2>4. Test SSH Connection</h2>
+        <pre>ssh -T git@github.com</pre>
+        <p>If successful, you will see a message saying: <code>You've successfully authenticated</code>.</p>
+
+        <h2>5. Initialize a Local Repository</h2>
+        <pre>cd /path/to/your/folder
+git init</pre>
+        <p>This initializes the folder as a local Git repository.</p>
+
+        <h2>6. Track and Commit Files</h2>
+        <pre>git add .
+git commit -m "Initial commit"</pre>
+
+        <h2>7. Link to a Remote Repository</h2>
+        <pre>git remote add origin git@github.com:username/repository.git</pre>
+
+        <h2>8. Push Changes to GitHub</h2>
+        <pre>git push -u origin main</pre>
+        <p>This command pushes your local changes to the remote repository on GitHub.</p>
+
+        <h2>9. Clone a Repository Using SSH</h2>
+        <pre>git clone git@github.com:username/repository.git</pre>
+
+        <h2>10. Summary of Common Commands</h2>
+        <ul>
+            <li><code>git status</code>: Check the status of your repository.</li>
+            <li><code>git log</code>: View the commit history.</li>
+            <li><code>git pull</code>: Pull the latest changes from the remote.</li>
+            <li><code>git branch</code>: List branches.</li>
+            <li><code>git checkout -b new-branch</code>: Create and switch to a new branch.</li>
+        </ul>
+    </div>
+</body>
+</html>
